@@ -67,9 +67,12 @@ class _SignUpViewState extends State<SignUpView> {
   }
 
   Widget validationButton({String text}) {
-    return RaisedButton(
-      color: Colors.indigo,
-        child: Text(text,style: TextStyle(color: Colors.white),),
+    return ElevatedButton(
+        // color: Colors.indigo,
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
         onPressed: () {
           var data = <String, dynamic>{
             "name": _name.text,
@@ -79,16 +82,24 @@ class _SignUpViewState extends State<SignUpView> {
             "about": "Hi There"
           };
           print(data);
-          ServiceManager.shared.signUp(data,completionHandler : (message) {
-            showDialog(context: context,builder: (context) => EGAlert(title: "Message", bodyMessage: message));
-            [_name,_password,_email].forEach((element) {element.clear();});
+          ServiceManager.shared.signUp(data, completionHandler: (message) {
+            showDialog(
+                context: context,
+                builder: (context) =>
+                    EGAlert(title: "Message", bodyMessage: message));
+            [_name, _password, _email].forEach((element) {
+              element.clear();
+            });
           });
         });
   }
 
   Widget dropDownMenu() {
     return InputDecorator(
-      decoration: const InputDecoration(contentPadding:const EdgeInsets.only(bottom: 10, right: 20, left: 10),border: const OutlineInputBorder()),
+      decoration: const InputDecoration(
+          contentPadding:
+              const EdgeInsets.only(bottom: 10, right: 20, left: 10),
+          border: const OutlineInputBorder()),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
             value: _value,
