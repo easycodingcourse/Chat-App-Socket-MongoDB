@@ -15,13 +15,13 @@ class SocketHelper {
 
   void connectSocket() async{
     id = await SharedPreferencesHelper.shared.getMyID();
-    socket = IO.io('http://10.0.2.2:8080', <String, dynamic>{
+    socket = IO.io('http://192.168.0.170:8080', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });
     socket.connect();
     socket.on('connect', (data) {
-      print('Bağlandı');
+      print("It's connected");
       socket.emit('chatID',{'id' : id});
       socket.on('receive_message', (data) {
         var content = data['content'].toString();
